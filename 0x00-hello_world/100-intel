@@ -1,0 +1,19 @@
+#!/bin/bash
+# Generate assembly code (Intel syntax) of a C file
+
+# Get C file name from command line argument or user input
+if [ -n "$1" ]; then
+    CFILE="$1"
+else
+    read -p "Enter C file name (without extension): " CFILE
+fi
+
+# Set output file name
+SFILE="${CFILE}.s"
+
+# Compile C file to assembly code using gcc
+gcc -S -masm=intel "$CFILE.c" -o "$SFILE"
+
+# Print success message
+echo "Assembly code generated in file: $SFILE"
+
