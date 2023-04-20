@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "$(cat $SFILE | wc -l) lines"
+export CFILE=0-main ; ./100-intel
