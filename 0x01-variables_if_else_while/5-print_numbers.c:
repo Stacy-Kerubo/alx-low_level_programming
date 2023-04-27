@@ -1,0 +1,4 @@
+nt i = 0; i < 10; i++)
+      | ^~~
+5-print_numbers.c:5:1: note: use option ‘-std=c99’, ‘-std=gnu99’, ‘-std=c11’ or ‘-std=gnu11’ to compile your code
+
