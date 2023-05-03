@@ -1,0 +1,8 @@
+r("\n");
+      |         ^~~~
+      |         |
+      |         char *
+In file included from 7-print_tebahpla.c:1:
+/usr/include/stdio.h:528:25: note: expected ‘int’ but argument is of type ‘char *’
+  528 | extern int putchar (int __c);
+      |                     ~~~~^
