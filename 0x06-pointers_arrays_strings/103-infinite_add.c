@@ -1,66 +1,63 @@
 #include "main.h"
+#include <string.h>
 
 /**
- * infinite_add - Adds two numbers.
- * @n1: First number to be added.
- * @n2: Second number to be added.
- * @r: Buffer to store the result.
- * @size_r: Buffer size.
+ * infinite_add - adds two numbers
+ * @n1: first number
+ * @n2: second number
+ * @r: buffer to store result
+ * @size_r: buffer size
  *
- * Return: Pointer to the result. If the result cannot be stored in r, return 0.
+ * Return: pointer to result or 0 if result can not be stored in r
  */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int len1, len2, carry, i, j;
+    int len1, len2, len_sum, carry, i, j;
+    char *p1, *p2;
 
-	len1 = _strlen(n1);
-	len2 = _strlen(n2);
-	if (len1 + 2 > size_r || len2 + 2 > size_r)
-		return (0);
+    len1 = strlen(n1);
+    len2 = strlen(n2);
+    len_sum = len1 > len2 ? len1 + 1 : len2 + 1;
 
-	i = len1 - 1, j = len2 - 1, carry = 0;
-	while (i >= 0 || j >= 0)
-	{
-		if (i >= 0)
-			carry += n1[i--] - '0';
-		if (j >= 0)
-			carry += n2[j--] - '0';
+    if (len_sum > size_r)
+        return (0);
 
-		if (carry > 9)
-		{
-			r[--size_r] = carry % 10 + '0';
-			carry /= 10;
-		}
-		else
-		{
-			r[--size_r] = carry + '0';
-			carry = 0;
-		}
-	}
-	if (carry > 0)
-		r[--size_r] = carry + '0';
-	else if (size_r - 1 == len1 + len2 - 1)
-		size_r--;
-	for (i = 0; r[i]; i++)
-		r[i] = r[i + size_r];
-	r[i] = '\0';
+    p1 = n1 + len1 - 1;
+    p2 = n2 + len2 - 1;
+    carry = 0;
 
-	return (r);
-}
+    for (i = 0, j = 0; i < len_sum - 1; i++, j++)
+    {
+        if (j < len1)
+            carry += *(p1 - j) - '0';
 
-/**
- * _strlen - Computes the length of a string.
- * @s: String to be computed.
- *
- * Return: Length of the string.
- */
-int _strlen(char *s)
-{
-	int len;
+        if (j < len2)
+            carry += *(p2 - j) - '0';
 
-	for (len = 0; *s; s++)
-		len++;
+        *(r + len_sum - i - 2) = (carry % 10) + '0';
+        carry /= 10;
+    }
 
-	return (len);
+    if (carry)
+    {
+        if (i == size_r - 1)
+            return (0);
+
+        *(r + len_sum - i - 2) = carry + '0';
+        *(r + len_sum - i - 1) = '\0';
+    }
+    else
+    {
+        *(r + len_sum - i - 1) = '\0';
+    }
+
+    for (i = 0; i < len_sum / 2; i++)
+    {
+        *(r + i) ^= *(r + len_sum - i - 2);
+        *(r + len_sum - i - 2) ^= *(r + i);
+        *(r + i) ^= *(r + len_sum - i - 2);
+    }
+
+    return (r);
 }
 
