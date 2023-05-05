@@ -1,5 +1,13 @@
-#include <main.h>
-char* _strcat(char* dest, char* src)
+#include "main.h"
+#include <string.h>
+/**
+ * _strcat - concatenates two strings
+ * @dest: the destination string
+ * @src: the source string
+ *
+ * Return: a pointer to the resulting string dest
+ */
+char *_strcat(char *dest, const char *src)
 {
 int dest_len = strlen(dest);
 int i;
@@ -10,4 +18,5 @@ dest[dest_len + i] = src[i];
 dest[dest_len + i] = '\0';
 return (dest);
 }
+
 
