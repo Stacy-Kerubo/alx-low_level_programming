@@ -14,6 +14,6 @@ for (col = 0; col < 8; col++)
 {
 putchar(a[row][col]);
 }
- putchar('\n');
+putchar('\n');
 }
 }
