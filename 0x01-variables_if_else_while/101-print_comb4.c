@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 int main(void)
 {
 int n, m, l;
@@ -22,4 +21,3 @@ putchar(' ');
 putchar('\n');
 return (0);
 }
-
