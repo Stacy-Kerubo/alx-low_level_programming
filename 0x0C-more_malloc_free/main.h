@@ -8,5 +8,8 @@ void *_calloc(unsigned int nmemb, unsigned int size);
 int *array_range(int min, int max);
 void simple_print_buffer(char *buffer, unsigned int size);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+int _isdigit(char c);
+int _strlen(char *str);
+char *multiply(char *num1, char *num2);
 #endif /* MAIN_H */
 
