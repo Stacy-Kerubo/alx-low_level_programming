@@ -1,5 +1,5 @@
+#include "function_pointers.h"
 
-#include <stdio.h>
 /**
  * print_name - Prints a name using a provided printing function.
  * @name: The name to be printed.
@@ -11,11 +11,9 @@
  * function is responsible for defining the specific behavior of how the name is
  * printed.
  */
-
 void print_name(char *name, void (*f)(char *))
 {
-if (name && f)
-f(name);
+    if (name && f)
+        f(name);
 }
-
 
