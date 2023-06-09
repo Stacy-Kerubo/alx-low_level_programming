@@ -1,34 +1,31 @@
 #include "main.h"
+int _sqrt_recursion(int n) {
+  int mid;
 
-/**
- * _sqrt_recursion - Returns the natural square root of a number.
- * @n: Number to calculate the square root of.
- *
- * Return: Integer square root of n, or -1 if there is no natural square root.
- */
-int _sqrt_recursion(int n)
-{
-    if (n < 0)
-        return -1;
+  /* Check if the number is negative */
+  if (n < 0) {
+    return -1;
+  }
 
-    return sqrt_helper(n, 0);
-}
+  /* Check if the number is 0 */
+  if (n == 0) {
+    return 0;
+  }
 
-/**
- * sqrt_helper - Recursive helper function to calculate the square root.
- * @n: Number to calculate the square root of.
- * @guess: Current guess for the square root.
- *
- * Return: Integer square root of n, or -1 if there is no natural square root.
- */
-int sqrt_helper(int n, int guess)
-{
-    if (guess * guess == n)
-        return guess;
+  /* Find the middle of the range of possible values */
+  mid = (n / 2) + 1;
 
-    if (guess * guess > n)
-        return -1;
+  /* Check if the middle value is the square root */
+  if (mid * mid == n) {
+    return mid;
+  }
 
-    return sqrt_helper(n, guess + 1);
+  /* If the middle value is not the square root, recurse on the lower half of the range */
+  if (mid * mid > n) {
+    return _sqrt_recursion(mid - 1);
+  }
+
+  /* If the middle value is not the square root, recurse on the upper half of the range */
+  return _sqrt_recursion(mid);
 }
 
